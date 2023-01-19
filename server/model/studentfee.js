@@ -2,23 +2,24 @@ const mongoose = require("mongoose");
 
 var schema = new mongoose.Schema(
   {
-    role: {
+    student: {
       type: mongoose.SchemaTypes.ObjectId,
-      ref: "Role",
+      ref: "Student",
       required: true,
     },
-    permission: {
+    classFee: {
       type: mongoose.SchemaTypes.ObjectId,
-      ref: "Permission",
+      ref: "ClassFee",
       required: true,
     },
-    isAssigned: {
-      type: Boolean,
+    referenceNumber: {
+      type: String,
+      required: true,
     },
   },
   { timestamps: true }
 );
 
-const RolePermission = mongoose.model("RolePermission", schema);
+const StudentFee = mongoose.model("StudentFee", schema);
 
-module.exports = RolePermission;
+module.exports = StudentFee;

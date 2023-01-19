@@ -31,20 +31,36 @@ route.get("/settings", services.getSettings);
  */
 route.get("/users", services.getUsers);
 
-
 /**
  *  @description roles page
  *  @method GET /roles
  */
 route.get("/roles", services.getRoles);
 
-
-
 /**
  *  @description classes page
  *  @method GET /classes
  */
 route.get("/classes", services.getClasses);
+
+/**
+ *  @description class fees
+ *  @method GET /classfee
+ */
+route.get("/classfee", services.getClassFees);
+
+/**
+ *  @description students
+ *  @method GET /students
+ */
+route.get("/students", services.getStudents);
+
+/**
+ *  @description student Fees
+ *  @method GET /studentfee
+ */
+route.get("/studentfee", services.getStudentFee);
+
 // API
 
 //User
@@ -69,12 +85,27 @@ route.put("/api/settings", SettingsCtrl.update);
 route.post("/auth/login", AuthCtrl.postLogin);
 route.get("/auth/logout", AuthCtrl.logout);
 
-
-//Role
+//Class
 route.get("/api/class", StudentCtrl.fetchClassLevel);
 route.post("/api/class", StudentCtrl.createClassLevel);
 route.get("/api/class/:id", StudentCtrl.getClassLevel);
 route.put("/api/class/:id", StudentCtrl.updateClassLevel);
 route.delete("/api/class/:id", StudentCtrl.deleteClassLevel);
+
+// Class fee
+route.get("/api/classfee", StudentCtrl.fetchClassFees);
+route.post("/api/classfee", StudentCtrl.createClassFee);
+route.get("/api/classfee/:id", StudentCtrl.getClassFee);
+route.put("/api/classfee/:id", StudentCtrl.updateClassFee);
+route.delete("/api/classfee/:id", StudentCtrl.deleteClassFee);
+
+// Student fee
+route.get("/api/student", StudentCtrl.fetchStudents);
+route.post("/api/student", StudentCtrl.createStudent);
+route.get("/api/student/:id", StudentCtrl.getStudent);
+route.post("/api/student/search", StudentCtrl.searchStudent);
+route.put("/api/student/:id", StudentCtrl.updateStudent);
+route.delete("/api/student/:id", StudentCtrl.deleteStudent);
+route.post("/api/student/logpayment", StudentCtrl.logPayment);
 
 module.exports = route;

@@ -1,5 +1,5 @@
 const axios = require("axios");
-const { Benefits } = require("../model/enums");
+const { Fees } = require("../model/enums");
 
 const url = process.env.URL;
 exports.homeRoutes = async (req, res) => {
@@ -66,13 +66,55 @@ exports.getRoles = async (req, res) => {
 
 exports.getClasses = async (req, res) => {
   const settings = await axios.get(`${url}/api/settings`);
-  const classLevel = await axios.get(`${url}/api/classes`);
+  const classLevels = await axios.get(`${url}/api/class`);
   const authUser = req.user;
 
-  res.render("roles", {
+  res.render("classes", {
     settings: settings.data,
-    classLevel: classLevel.data.classLevel,
+    classLevels: classLevels.data.classLevels,
     authUser,
     title: "Classes",
+  });
+};
+
+exports.getClassFees = async (req, res) => {
+  const settings = await axios.get(`${url}/api/settings`);
+  const classLevels = await axios.get(`${url}/api/class`);
+  const classFees = await axios.get(`${url}/api/classfee`);
+  const authUser = req.user;
+
+  res.render("classfee", {
+    settings: settings.data,
+    classLevels: classLevels.data.classLevels,
+    classFees: classFees.data.classFees,
+    Fees: Object.values(Fees),
+    authUser,
+    title: "Class Fees",
+  });
+};
+
+exports.getStudents = async (req, res) => {
+  const settings = await axios.get(`${url}/api/settings`);
+  const classLevels = await axios.get(`${url}/api/class`);
+  const students = await axios.get(`${url}/api/student`);
+  const authUser = req.user;
+
+  res.render("students", {
+    settings: settings.data,
+    classLevels: classLevels.data.classLevels,
+    students: students.data.students,
+    authUser,
+    title: "Students",
+  });
+};
+
+exports.getStudentFee = async (req, res) => {
+  const settings = await axios.get(`${url}/api/settings`);
+  const authUser = req.user;
+
+  res.render("studentfee", {
+    settings: settings.data,
+    authUser,
+    title: "Student Fee Payment",
   });
 };

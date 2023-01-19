@@ -1,0 +1,77 @@
+<!-- include header -->
+<%- include('include/_header') %>
+<!-- /include header -->
+<div class="page-wrapper">
+
+<div class="container-xl">
+    <!-- Page title -->
+    <div class="page-header d-print-none">
+        <div class="row align-items-center"></div>
+    </div>
+</div>
+<div class="page-body">
+    <div class="container-xl">
+        <div class="col">
+            <!-- Page pre-title -->
+            <div class="page-pretitle">Student</div>
+            <h2 class="page-title">Fee Payment</h2>
+            <hr />
+
+            <form action="/api/studentfee" method="PUT" id="studentfee">
+                <div class="new_user">
+                    <div class="mb-3">
+                        <label class="form-label">Student Reg. Number</label>
+                        <div class="row g-2">
+                            <div class="col">
+                                <input type="text" name="regnumber" id="regnumber" value="STU/" class="form-control"
+                                    placeholder="Enter student reg number" />
+                            </div>
+                            <div class="col-auto align-self-center">
+                                <span class="form-help" data-bs-toggle="popover" data-bs-placement="top"
+                                    data-bs-content="<p>Enter the student reg. number</p> " data-bs-html="true">?</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="button" id="searchBtn" class="btn btn-primary btn-block">
+                            Search
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <!-- form handling -->
+            <hr />
+            <div class="col-12">
+                <h3>Name: <p id="studentnamedisplay"></p>
+                </h3>
+                <h3>Class <p id="classdisplay"></p>
+                </h3>
+                <hr>
+                <div class="card">
+                 
+                    <div class="table-responsive">
+                        <table class="table card-table table-vcenter text-nowrap datatable">
+                            <thead>
+                                <tr>
+                                    <th>Fee</th><th>Amount</th>
+                                    <th>Payment Status</th><th>Reference number</th>
+                                    <th class="w-1"></th>
+                                </tr>
+                            </thead>
+                            <tbody id="feetable">
+                              
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://js.paystack.co/v1/inline.js"></script>
+<!-- include footer -->
+<%- include('include/_footer') %>
+<!-- /include footer -->
+</div>

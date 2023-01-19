@@ -14,21 +14,25 @@ var schema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  classLevel: {
+  class: {
     type: mongoose.SchemaTypes.ObjectId,
     ref: "ClassLevel",
     required: true,
   },
   gender: {
     type: String,
-    required: true
+    required: true,
   },
   dob: {
     type: String,
-    required: true
+    required: true,
+  },
+  regnumber: {
+    type: String,
+    required: true,
   },
 });
 
-const User = mongoose.model("User", schema);
+const Student = mongoose.model("Student", schema);
 
-module.exports = User;
+module.exports = Student;

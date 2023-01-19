@@ -1,0 +1,537 @@
+<!-- include header -->
+<%- include('include/_header') %>
+<!-- /include header -->
+<div class="page-wrapper">
+<div class="container-xl">
+  <!-- Page title -->
+  <div class="page-header d-print-none">
+    <div class="row align-items-center"></div>
+  </div>
+</div>
+<div class="page-body">
+      <div class="container-xl">
+        <div class="col">
+          <div class="page-header d-print-none">
+            <div class="row align-items-center">
+              <div class="col">
+                <!-- Page pre-title -->
+                <div class="page-pretitle">Student</div>
+                <h2 class="page-title">List</h2>
+              </div>
+              <!-- Page title actions -->
+              <div class="col-auto ms-auto d-print-none">
+                <div class="btn-list">
+                  <a
+                    href="#"
+                    class="btn btn-primary d-none d-sm-inline-block"
+                    data-bs-toggle="modal"
+                    data-bs-target="#create-student-modal"
+                  >
+                    <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="icon"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      stroke-width="2"
+                      stroke="currentColor"
+                      fill="none"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                      <line x1="12" y1="5" x2="12" y2="19" />
+                      <line x1="5" y1="12" x2="19" y2="12" />
+                    </svg>
+                    Create new student
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="card">
+              <div class="table-responsive">
+                <table class="table table-vcenter table-mobile-md card-table">
+                  <thead>
+                    <tr>
+                      <th>Name</th><th>Reg. Number</th>
+                      <th>Gender</th>
+                      <th>Date of Birth</th>
+                      <th>Class</th>
+                      <th class="w-1"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% for(let student of students) { %>
+                    <tr>
+                        <td data-label="Name">
+                          <div class="d-flex py-1 align-items-center">
+                                                      <span class="avatar me-2"><%= student.abbrev %></span>
+                            <div class="flex-fill">
+                              <div class="font-weight-medium">
+                                <%= student.surname %> <%= student.firstname %> <%= student.lastname %>
+                              </div>
+                           
+                            </div>
+                          </div>
+                        </td>
+                        <td data-label="Name">
+                          <div class="d-flex py-1 align-items-center">
+                            <div class="flex-fill">
+                              <div class="font-weight-medium">
+                                <%= student.regnumber %>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                        <td data-label="Name">
+                          <div class="d-flex py-1 align-items-center">
+                            <div class="flex-fill">
+                              <div class="font-weight-medium">
+                                <%= student.gender %> 
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                        <td data-label="Name">
+                          <div class="d-flex py-1 align-items-center">
+                            <div class="flex-fill">
+                              <div class="font-weight-medium">
+                                <%= student.dob %>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                        <td data-label="Name">
+                          <div class="d-flex py-1 align-items-center">
+                            <div class="flex-fill">
+                              <div class="font-weight-medium">
+                                <%= student.class.class %> <%= student.class.level %>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                      <td>
+                        <div class="btn-list flex-nowrap">
+                          <a
+                            href="#"
+                            data-id="<%= student._id %>"
+                            class="btn btn-primary EditStudentBtn"
+                            data-bs-toggle="modal"
+                            data-bs-target="#edit-student-modal"
+                            aria-label="Edit Student"
+                          >
+                            Edit
+                          </a>
+                          <a
+                            href="#"
+                            data-id="<%= student._id %>"
+                            class="btn btn-danger"
+                            onclick="setId(event)"
+                            data-bs-toggle="modal"
+                            data-bs-target="#modal-danger"
+                          >
+                            Remove
+                          </a>
+                        </div>
+                      </td>
+                    </tr>
+                    <% } %>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <div
+      class="modal modal-blur fade"
+      id="create-student-modal"
+      tabindex="-1"
+      role="dialog"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">New Class Student</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="mb-3">
+                  <label class="form-label">Surname</label>
+                  <div class="row g-2">
+                    <div class="col">
+                      <input
+                        type="text"
+                        name="class"
+                        id="createsurname"
+                        class="form-control"
+                        placeholder="Enter surname"
+                      />
+                    </div>
+                    <div class="col-auto align-self-center">
+                      <span
+                        class="form-help"
+                        data-bs-toggle="popover"
+                        data-bs-placement="top"
+                        data-bs-content="<p>Enter surname</p> "
+                        data-bs-html="true"
+                        >?</span
+                      >
+                    </div>
+                  </div>
+                </div>
+                  <div class="mb-3">
+                    <label class="form-label">Firstname</label>
+                    <div class="row g-2">
+                      <div class="col">
+                        <input type="text" name="class" id="createfirstname" class="form-control" placeholder="Enter firstname" />
+                      </div>
+                      <div class="col-auto align-self-center">
+                        <span class="form-help" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="<p>Enter firstname</p> "
+                          data-bs-html="true">?</span>
+                      </div>
+                    </div>
+                  </div>
+                    <div class="mb-3">
+                      <label class="form-label">Lastname</label>
+                      <div class="row g-2">
+                        <div class="col">
+                          <input type="text" name="class" id="createlastname" class="form-control" placeholder="Enter lastname" />
+                        </div>
+                        <div class="col-auto align-self-center">
+                          <span class="form-help" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="<p>Enter lastname</p> "
+                            data-bs-html="true">?</span>
+                        </div>
+                      </div>
+                    </div>
+                      <div class="mb-3">
+                        <label class="form-label">Gender</label>
+                        <div class="row g-2">
+                          <div class="col">
+                           <select id="creategender" class="form-control">
+                            <option> -- Select Gender --</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Others">Others</option>
+                           </select>
+                          </div>
+                          <div class="col-auto align-self-center">
+                            <span class="form-help" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="<p>Select Gender</p> "
+                              data-bs-html="true">?</span>
+                          </div>
+                        </div>
+                      </div>
+                        <div class="mb-3">
+                          <label class="form-label">Date of Birth</label>
+                          <div class="row g-2">
+                            <div class="col">
+                              <input type="text" name="class" id="createdob" class="form-control" placeholder="Enter date of birth" />
+                            </div>
+                            <div class="col-auto align-self-center">
+                              <span class="form-help" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="<p>Enter date of birth</p> "
+                                data-bs-html="true">?</span>
+                            </div>
+                          </div>
+                        </div>
+                  <div class="mb-3">
+                    <label class="form-label">Class</label>
+                    <div class="row g-2">
+                      <div class="col">
+                        <select id="createclass" class="form-control">
+                          <option> -- Select Class --</option>
+                          <% for(let classlevel of classLevels){ %>
+                          <option value="<%= classlevel._id %>"><%= classlevel.class %> <%= classlevel.level %></option>
+                          <% } %>
+                        </select>
+                      </div>
+                      <div class="col-auto align-self-center">
+                        <span class="form-help" data-bs-toggle="popover" data-bs-placement="top"
+                          data-bs-content="<p>Select class for fee</p> " data-bs-html="true">?</span>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <a
+              href="#"
+              class="btn btn-link link-secondary"
+              data-bs-dismiss="modal"
+            >
+              Cancel
+            </a>
+            <a href="#" class="btn btn-primary ms-auto" id="CreateStudentBtn">
+              <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="icon"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke="currentColor"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <line x1="12" y1="5" x2="12" y2="19" />
+                <line x1="5" y1="12" x2="19" y2="12" />
+              </svg>
+              Create new student
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="modal modal-blur fade"
+      id="edit-student-modal"
+      tabindex="-1"
+      role="dialog"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Edit Student</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+
+          <div class="modal-body">
+            <label class="form-label">Student Details</label>
+            <div class="row">
+            <div class="col-lg-12">
+              <div class="mb-3">
+                <label class="form-label">Surname</label>
+                <div class="row g-2">
+                  <div class="col">
+                    <input type="text" name="class" id="editsurname" class="form-control" placeholder="Enter surname" />
+                  <input type="hidden" id="editid" />
+                  </div>
+                  <div class="col-auto align-self-center">
+                    <span class="form-help" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="<p>Enter surname</p> "
+                      data-bs-html="true">?</span>
+                  </div>
+                </div>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Firstname</label>
+                <div class="row g-2">
+                  <div class="col">
+                    <input type="text" name="class" id="editfirstname" class="form-control" placeholder="Enter firstname" />
+                  </div>
+                  <div class="col-auto align-self-center">
+                    <span class="form-help" data-bs-toggle="popover" data-bs-placement="top"
+                      data-bs-content="<p>Enter firstname</p> " data-bs-html="true">?</span>
+                  </div>
+                </div>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Lastname</label>
+                <div class="row g-2">
+                  <div class="col">
+                    <input type="text" name="class" id="editlastname" class="form-control" placeholder="Enter lastname" />
+                  </div>
+                  <div class="col-auto align-self-center">
+                    <span class="form-help" data-bs-toggle="popover" data-bs-placement="top"
+                      data-bs-content="<p>Enter lastname</p> " data-bs-html="true">?</span>
+                  </div>
+                </div>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Gender</label>
+                <div class="row g-2">
+                  <div class="col">
+                    <select id="editgender" class="form-control">
+                      <option> -- Select Gender --</option>
+                      <option value="Male">Male</option>
+                      <option value="Female">Female</option>
+                      <option value="Others">Others</option>
+                    </select>
+                  </div>
+                  <div class="col-auto align-self-center">
+                    <span class="form-help" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="<p>Select Gender</p> "
+                      data-bs-html="true">?</span>
+                  </div>
+                </div>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Date of Birth</label>
+                <div class="row g-2">
+                  <div class="col">
+                    <input type="text" name="class" id="editdob" class="form-control" placeholder="Enter date of birth" />
+                  </div>
+                  <div class="col-auto align-self-center">
+                    <span class="form-help" data-bs-toggle="popover" data-bs-placement="top"
+                      data-bs-content="<p>Enter date of birth</p> " data-bs-html="true">?</span>
+                  </div>
+                </div>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Class</label>
+                <div class="row g-2">
+                  <div class="col">
+                    <select id="editclass" class="form-control">
+                      <option> -- Select Class --</option>
+                      <% for(let classlevel of classLevels){ %>
+                      <option value="<%= classlevel._id %>"><%= classlevel.class %> <%= classlevel.level %></option>
+                      <% } %>
+                    </select>
+                  </div>
+                  <div class="col-auto align-self-center">
+                    <span class="form-help" data-bs-toggle="popover" data-bs-placement="top"
+                      data-bs-content="<p>Select class for fee</p> " data-bs-html="true">?</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <a
+              href="#"
+              class="btn btn-link link-secondary"
+              data-bs-dismiss="modal"
+            >
+              Cancel
+            </a>
+            <a href="#" class="btn btn-primary ms-auto" id="UpdateStudentBtn">
+              <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="icon"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke="currentColor"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <line x1="12" y1="5" x2="12" y2="19" />
+                <line x1="5" y1="12" x2="19" y2="12" />
+              </svg>
+              Update
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="modal modal-blur fade"
+      id="modal-danger"
+      tabindex="-1"
+      role="dialog"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+          <div class="modal-status bg-danger"></div>
+          <div class="modal-body text-center py-4">
+            <!-- Download SVG icon from http://tabler-icons.io/i/alert-triangle -->
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="icon mb-2 text-danger icon-lg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              stroke-width="2"
+              stroke="currentColor"
+              fill="none"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path d="M12 9v2m0 4v.01" />
+              <path
+                d="M5 19h14a2 2 0 0 0 1.84 -2.75l-7.1 -12.25a2 2 0 0 0 -3.5 0l-7.1 12.25a2 2 0 0 0 1.75 2.75"
+              />
+            </svg>
+            <h3>Are you sure?</h3>
+            <div class="text-muted">
+              Do you really want to remove this student?
+            </div>
+          </div>
+          <div class="modal-footer">
+            <div class="w-100">
+              <div class="row">
+                <div class="col">
+                  <a href="#" class="btn w-100" data-bs-dismiss="modal">
+                    Cancel
+                  </a>
+                </div>
+                <div class="col">
+                  <a href="#" class="btn btn-danger w-100 DeleteStudentBtn">
+                    Remove
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <script>
+      // @formatter:off
+      document.addEventListener("DOMContentLoaded", function () {
+        window.Litepicker && (new Litepicker({
+          element: document.getElementById('editdob'),
+          buttonText: {
+            previousMonth: `<!-- Download SVG icon from http://tabler-icons.io/i/chevron-left -->
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><polyline points="15 6 9 12 15 18" /></svg>`,
+            nextMonth: `<!-- Download SVG icon from http://tabler-icons.io/i/chevron-right -->
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><polyline points="9 6 15 12 9 18" /></svg>`,
+          },
+        }));
+      });
+        // @formatter:on
+    </script>
+      <script>
+        // @formatter:off
+        document.addEventListener("DOMContentLoaded", function () {
+          window.Litepicker && (new Litepicker({
+            element: document.getElementById('createdob'),
+            buttonText: {
+              previousMonth: `<!-- Download SVG icon from http://tabler-icons.io/i/chevron-left -->
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><polyline points="15 6 9 12 15 18" /></svg>`,
+              nextMonth: `<!-- Download SVG icon from http://tabler-icons.io/i/chevron-right -->
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><polyline points="9 6 15 12 9 18" /></svg>`,
+            },
+          }));
+        });
+          // @formatter:on
+      </script>
+<!-- include footer -->
+<%- include('include/_footer') %>
+<!-- /include footer -->
+</div>

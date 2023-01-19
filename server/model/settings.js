@@ -1,16 +1,19 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-var schema = new mongoose.Schema({
-    appName : {
-        type : String,
-        required: true
+var schema = new mongoose.Schema(
+  {
+    appName: {
+      type: String,
+      required: true,
     },
-     poweredBy : {
-        type : String,
-        required: true
+    poweredBy: {
+      type: String,
+      required: true,
     },
-}, {timestamps:true})
+  },
+  { timestamps: true }
+);
 
-const Settings = mongoose.model('Settings', schema);
+const Settings = mongoose.model("Settings", schema);
 
 module.exports = Settings;
