@@ -33,7 +33,7 @@
           <h1 class="navbar-brand navbar-brand-autodark">
             <a href=".">Student Fee Verification System</a>
           </h1>
-          <div class="navbar-nav flex-row d-lg-none">
+          <div class="navbar-nav flex-row d-lg-none" style="display: block;">
             <a
               href="?theme=dark"
               class="nav-link px-0 hide-theme-dark"
@@ -138,19 +138,20 @@
                   class="avatar avatar-sm"
                   style="background-image: url(./static/avatars/000m.jpg)"
                 ></span>
-                <div class="d-none d-xl-block ps-2">
-                  <div>Paweł Kuna</div>
-                  <div class="mt-1 small text-muted">UI Designer</div>
+              <div class="ps-2">
+                <% if( authUser ){ %>
+                <div><%= authUser.username %></div>
+                <div class="mt-1 small text-muted">Administrator</div>
+                <%}%>
                 </div>
               </a>
               <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                <a href="#" class="dropdown-item">Set status</a>
-                <a href="#" class="dropdown-item">Profile & account</a>
-                <a href="#" class="dropdown-item">Feedback</a>
-                <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item">Settings</a>
-                <a href="#" class="dropdown-item">Logout</a>
-              </div>
+                <% if( authUser ){ %>
+                <a href="/auth/logout" class="dropdown-item">Logout</a>
+                <%}else{%>
+                <a href="/auth/login" class="dropdown-item">Login</a>
+                <%}%>
+                </div>
             </div>
           </div>
           <div class="collapse navbar-collapse" id="navbar-menu">
@@ -292,6 +293,9 @@
                 <div class="dropdown-menu">
                   <a class="dropdown-item" href="/settings">
                     Application Settings
+                  </a>
+                  <a class="dropdown-item" href="/auth/logout">
+                    Logout
                   </a>
                 </div>
               </li>

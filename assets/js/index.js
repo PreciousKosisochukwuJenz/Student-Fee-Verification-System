@@ -1,6 +1,6 @@
 
-const url = "https://sfvs.herokuapp.com";
-// const url = "http://localhost:3000";
+// const url = "https://sfvs.herokuapp.com";
+const url = "http://localhost:3000";
 
 $("#LoginBtn").click(function (event) {
   event.preventDefault();
@@ -437,7 +437,7 @@ $("#searchBtn").click((event) => {
                             ${fee.referenceNumber ? fee.referenceNumber : "NIL"}
                         </td>
                          <td>
-                          <a
+                         ${!fee.paid ?  `<a
                             href="#"
                             data-amount=${fee.amount}
                             data-fee=${fee.fee}
@@ -446,7 +446,7 @@ $("#searchBtn").click((event) => {
                             class="btn btn-primary makepayment"
                             >
                             Make Payment
-                          </a>
+                          </a>` : ""}
                         </td>
                       </tr>
       `;
