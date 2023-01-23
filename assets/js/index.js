@@ -431,7 +431,7 @@ $("#searchBtn").click((event) => {
                             ₦${fee.amount}
                         </td>
                          <td>
-                            ${fee.paid ? 'Paid': 'Not paid'}
+                            ${fee.paid ? 'Paid & Verified': 'Not paid'}
                         </td>
                           <td>
                             ${fee.referenceNumber ? fee.referenceNumber : "NIL"}
