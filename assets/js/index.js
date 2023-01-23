@@ -472,7 +472,6 @@ function format(amountStr) {
 }
 
 function payWithPaystack(amount, fee, name, classLevel, classFee, student) {
-  debugger;
   let handler = PaystackPop.setup({
     key: "pk_test_86e1266df9b76fd787c35da5abff910d7bb16cf8", // Replace with your public key
     email: "kcokolo10@gmail.com",
@@ -498,3 +497,12 @@ function payWithPaystack(amount, fee, name, classLevel, classFee, student) {
 
   handler.openIframe();
 }
+
+$("#showpassword").click(function(e){
+  var input = e.target.parentNode.parentNode.parentNode.children[0];
+  if(input.type === "password"){
+    input.type = "text";
+  }else{
+    input.type = "password";
+  }
+})
